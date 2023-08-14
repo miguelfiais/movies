@@ -6,10 +6,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 interface SliderProps {
   results: {
-    title: string
-    overview: string
+    title?: string
+    name?: string
     poster_path: string
-    backdrop_path: string
   }[]
 }
 
@@ -20,13 +19,13 @@ const Slider = ({ results }: SliderProps) => {
         <SwiperSlide key={index}>
           <Image
             src={`https://image.tmdb.org/t/p/original${result.poster_path}`}
-            alt={result.title}
+            alt={(result.name ?? result.title)!}
             width={250}
             height={375}
             className="rounded-xl"
           />
           <p className="text-white text-center mt-2 font-medium">
-            {result.title}
+            {result.name ?? result.title}
           </p>
         </SwiperSlide>
       ))}
