@@ -1,5 +1,6 @@
 'use client'
 
+import { getImageUrl } from '@/utils/getImage'
 import Image from 'next/image'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -19,9 +20,7 @@ const Slider = ({ results }: SliderProps) => {
       {results.map((result, index) => (
         <SwiperSlide key={index}>
           <Image
-            src={`https://image.tmdb.org/t/p/original${
-              result.poster_path ?? result.profile_path
-            }`}
+            src={getImageUrl(result.poster_path ?? result.profile_path)}
             alt={(result.name ?? result.title)!}
             width={250}
             height={375}

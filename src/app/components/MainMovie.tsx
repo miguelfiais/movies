@@ -1,4 +1,5 @@
 import { api } from '@/services/api'
+import { getImageUrl } from '@/utils/getImage'
 import Image from 'next/image'
 
 export interface IMovie {
@@ -35,7 +36,7 @@ const MainMovie = async () => {
   return (
     <div
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original${movieRandom.backdrop_path})`,
+        backgroundImage: `url(${getImageUrl(movieRandom.backdrop_path)})`,
       }}
       className={`relative h-screen bg-no-repeat bg-cover bg-center flex items-center justify-center before:absolute before:w-full before:h-full before:bg-black before:bg-opacity-60`}
     >
@@ -53,7 +54,7 @@ const MainMovie = async () => {
           </div>
         </div>
         <Image
-          src={`https://image.tmdb.org/t/p/original${movieRandom.poster_path}`}
+          src={getImageUrl(movieRandom.poster_path)}
           alt={movieRandom.title}
           width={300}
           height={450}
