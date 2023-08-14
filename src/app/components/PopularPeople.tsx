@@ -5,30 +5,31 @@ interface SerieResult {
   data: {
     results: {
       name: string
-      poster_path: string
+      popular_path: string
     }[]
   }
 }
 
-const fetchTopSeries = async () => {
+const fetchPopularPeople = async () => {
   try {
     const {
       data: { results },
-    } = (await api.get('/tv/top_rated')) as SerieResult
+    } = (await api.get('/person/popular')) as SerieResult
     return results
   } catch (error) {
     console.log(error)
   }
 }
 
-const TopSeries = async () => {
-  const results = await fetchTopSeries()
+const PopularPeople = async () => {
+  const results = await fetchPopularPeople()
+  console.log(results)
   return (
     <div className="p-5">
-      <h2 className="font-bold text-white text-2xl my-5">Top Series</h2>
+      <h2 className="font-bold text-white text-2xl my-5">Top Artistas</h2>
       {results && <Slider results={results} />}
     </div>
   )
 }
 
-export default TopSeries
+export default PopularPeople

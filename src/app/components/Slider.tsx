@@ -8,7 +8,8 @@ interface SliderProps {
   results: {
     title?: string
     name?: string
-    poster_path: string
+    poster_path?: string
+    profile_path?: string
   }[]
 }
 
@@ -18,7 +19,9 @@ const Slider = ({ results }: SliderProps) => {
       {results.map((result, index) => (
         <SwiperSlide key={index}>
           <Image
-            src={`https://image.tmdb.org/t/p/original${result.poster_path}`}
+            src={`https://image.tmdb.org/t/p/original${
+              result.poster_path ?? result.profile_path
+            }`}
             alt={(result.name ?? result.title)!}
             width={250}
             height={375}

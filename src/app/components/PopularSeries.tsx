@@ -10,25 +10,25 @@ interface SerieResult {
   }
 }
 
-const fetchTopSeries = async () => {
+const fetchPopularSeries = async () => {
   try {
     const {
       data: { results },
-    } = (await api.get('/tv/top_rated')) as SerieResult
+    } = (await api.get('/tv/popular')) as SerieResult
     return results
   } catch (error) {
     console.log(error)
   }
 }
 
-const TopSeries = async () => {
-  const results = await fetchTopSeries()
+const PopularSeries = async () => {
+  const results = await fetchPopularSeries()
   return (
     <div className="p-5">
-      <h2 className="font-bold text-white text-2xl my-5">Top Series</h2>
+      <h2 className="font-bold text-white text-2xl my-5">Séries Populares</h2>
       {results && <Slider results={results} />}
     </div>
   )
 }
 
-export default TopSeries
+export default PopularSeries
